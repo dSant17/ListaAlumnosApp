@@ -106,6 +106,7 @@ public class AlumnosDb implements Persistencia, Proyeccion{
         alumno.setMatricula(cursor.getString(1));
         alumno.setNombre(cursor.getString(2));
         alumno.setGrado(cursor.getString(3));
+        alumno.setImg(cursor.getString(4));
         return alumno;
     }
 }

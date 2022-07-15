@@ -5,11 +5,15 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-public class Aplicacion extends Application {
-    private ArrayList<Alumno> alumnos;
-    private MiAdaptador adaptador;
+import modelo.AlumnoDbHelper;
+import modelo.AlumnosDb;
 
-    public ArrayList<Alumno> getAlumnos(){
+public class Aplicacion extends Application {
+    public static ArrayList<Alumno> alumnos;
+    private MiAdaptador adaptador;
+    private AlumnosDb alumnosDb;
+
+    public static ArrayList<Alumno> getAlumnos(){
         return alumnos;
     }
 
@@ -20,7 +24,9 @@ public class Aplicacion extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        alumnos = Alumno.llenarAlumnos();
+        alumnosDb = new AlumnosDb(getApplicationContext());
+        alumnos = alumnosDb.allAlumnos();
+        // alumnos = Alumno.llenarAlumnos();
         adaptador = new MiAdaptador(alumnos, this);
         Log.d("", "onCreate: tamaño array list " + alumnos.size());
     }
